@@ -1,4 +1,4 @@
-from ciphers import CipherInterface
+from cipher_interface import CipherInterface
 import re
 
 ################################################################################
@@ -20,8 +20,8 @@ class CaesarCipher(CipherInterface):
     #   Char rotated by 13 -- string
     #
     ############################################################################
-    def Rot13(self, letter):
-        return chr(((ord(letter.lower()) - 97 + 13) % 26) + 97)
+    def EncryptRotN(self, letter):
+        return 
 
     ############################################################################
     #
@@ -55,7 +55,7 @@ class CaesarCipher(CipherInterface):
     #
     ############################################################################
     def Encrypt(self, plaintext):
-        return ''.join([self.Rot13(x) for x in re.sub(r'[\W0-9 ]', '', plaintext.lower())])
+        return ''.join([chr(((ord(x.lower()) - 97 + self.key) % 26) + 97) for x in re.sub(r'[\W0-9 ]', '', plaintext.lower())])
     
     ############################################################################
     #
@@ -71,7 +71,7 @@ class CaesarCipher(CipherInterface):
     #
     ############################################################################
     def Decrypt(self, ciphertext):
-        return self.Encrypt(ciphertext)
+        return ''.join([chr(((ord(x.lower()) - 97 - self.key) + 97)) if (ord(x.lower()) - 97 - self.key) >= 0 else chr(((ord(x.lower()) - 97 - self.key) + 26) + 97) for x in re.sub(r'[\W0-9 ]', '', ciphertext.lower())])
     
 ################################################################################
 #
@@ -80,6 +80,7 @@ class CaesarCipher(CipherInterface):
 ################################################################################
 
 a = CaesarCipher()
+a.SetKey(15)
 b = a.Encrypt('test')
 print b
 print a.Decrypt(b)
