@@ -135,9 +135,3 @@ class VigenreCipher(CipherInterface):
 # end Vigenre Cipher
 #
 ################################################################################
-a = VigenreCipher()
-a.SetKey('playfair example')
-b = (a.Encrypt('Hide the gold in the tree stump'))
-print b
-print a.Decrypt(b)
-

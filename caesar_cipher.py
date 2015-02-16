@@ -78,9 +78,3 @@ class CaesarCipher(CipherInterface):
 # end CAESAR CIPHER
 #
 ################################################################################
-
-a = CaesarCipher()
-a.SetKey(15)
-b = a.Encrypt('test')
-print b
-print a.Decrypt(b)

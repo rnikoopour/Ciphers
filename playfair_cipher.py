@@ -1,4 +1,7 @@
-from ciphers import CipherInterface
+from cipher_interface import CipherInterface
+from string import lowercase as lowercase_letters
+import re
+
 ################################################################################
 #
 # Playfair Cipher
