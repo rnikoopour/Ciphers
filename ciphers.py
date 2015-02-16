@@ -441,7 +441,6 @@ class VigenreCipher(CipherInterface):
             self.loc_in_key = 0
             self.reset_key_loc = False
         decrypted = chr((ord(plaintext) - 97) - (ord(self.key[self.loc_in_key]) - 97) + 97) if (ord(plaintext) - 97) - (ord(self.key[self.loc_in_key]) - 97) >=0 else chr((ord(plaintext) - 97) - (ord(self.key[self.loc_in_key]) - 97) + 26 + 97)
-        print 'dec: ' + decrypted
         self.loc_in_key = (self.loc_in_key + 1) % len(self.key)
         return decrypted
     
