@@ -1,3 +1,4 @@
+import re
 ################################################################################
 #
 # CipherInterface
@@ -56,7 +57,26 @@ class CipherInterface:
     ############################################################################
     def Decrypt(self, ciphertext):
         return ciphertext
-    
+
+
+    ############################################################################
+    #
+    # Function: PrepStringForCipher
+    #
+    # Purpose: Removes all nonalpha chars from text
+    #
+    # Input:
+    #   text -- string: Text that will get encrypted
+    #
+    # Output:
+    #   text -- string: The input text with all nonalpha chars removed
+    #
+    ############################################################################
+    def PrepStringForCipher(self, text):
+        # Ensure everything is lowercase that why .lower() is called
+        #  Also removes spaces and non-alpha chars
+        text = re.sub(r'[\W0-9 ]+', '', text.lower())
+        return text
 ################################################################################
 #
 # end CipherInterface
