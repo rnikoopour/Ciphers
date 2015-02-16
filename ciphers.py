@@ -413,6 +413,11 @@ class VigenreCipher(CipherInterface):
         if self.reset_key_loc:
             self.loc_in_key = 0
             self.reset_key_loc = False
+        # a = ord(plaintext) - 97 normalizes value
+        # b = ord(self.key[self.loc_in_key]) - 97 normalizes that value
+        # c = a + b gives us our offset
+        # d = c % 26 to catch overflow
+        # e = d + 97 puts value back into lowercase ascii range
         encrypted = chr((((ord(plaintext) - 97) + (ord(self.key[self.loc_in_key]) - 97)) % 26) + 97)
         print 'enc: ' + encrypted
         self.loc_in_key = (self.loc_in_key + 1) % len(self.key)
