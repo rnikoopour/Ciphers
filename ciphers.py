@@ -3,7 +3,7 @@ from string import lowercase as lowercase_letters
 
 ################################################################################
 #
-# Ciphernterface
+# CipherInterface
 #
 ################################################################################
 class CipherInterface:
@@ -462,7 +462,20 @@ class VigenreCipher(CipherInterface):
         encrypted = ''.join([self.EncryptLetter(x) for x in self.PrepStringForCipher(plaintext)])
         self.reset_key_loc = True
         return encrypted
-    
+
+    ############################################################################
+    #
+    # Function: Decrypt
+    #
+    # Purpose: Decrypt the inputted cipher text
+    #
+    # Input:
+    #   plaintext -- string: Text to be decrypted
+    #
+    # Output:
+    #   Returns decrypted version of ciphertext
+    #
+    ############################################################################
     def Decrypt(self, ciphertext):
         decrypted = ''.join([self.DecryptLetter(x) for x in self.PrepStringForCipher(ciphertext)])
         self.reset_key_loc = True
