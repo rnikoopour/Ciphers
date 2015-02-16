@@ -9,28 +9,12 @@ import re
 class CaesarCipher(CipherInterface):
     ############################################################################
     #
-    # Function: Rot13
-    #
-    # Purpose: Rotates letter by 13
-    #
-    # Input:
-    #   letter -- char -- string: Character to be rotated
-    #
-    # Output:
-    #   Char rotated by 13 -- string
-    #
-    ############################################################################
-    def EncryptRotN(self, letter):
-        return 
-
-    ############################################################################
-    #
     # Function: SetKey
     #
     # Purpose: Sets key for cipher
     #
     # Input:
-    #   key -- string: String representing the numerical amount to rotate by
+    #   key -- string: numerical amount to rotate by
     #
     # Output: Nothing
     #
@@ -39,7 +23,7 @@ class CaesarCipher(CipherInterface):
     ############################################################################
     def SetKey(self, key):
         # Mod by 26 to keep within proper range
-        self.key = int(key) % 26
+        self.rot_amount = int(key) % 26
     
     ############################################################################
     #
@@ -55,7 +39,7 @@ class CaesarCipher(CipherInterface):
     #
     ############################################################################
     def Encrypt(self, plaintext):
-        return ''.join([chr(((ord(x.lower()) - 97 + self.key) % 26) + 97) for x in re.sub(r'[\W0-9 ]', '', plaintext.lower())])
+        return ''.join([chr(((ord(x.lower()) - 97 + self.rot_amount) % 26) + 97) for x in re.sub(r'[\W0-9 ]', '', plaintext.lower())])
     
     ############################################################################
     #
@@ -71,7 +55,7 @@ class CaesarCipher(CipherInterface):
     #
     ############################################################################
     def Decrypt(self, ciphertext):
-        return ''.join([chr(((ord(x.lower()) - 97 - self.key) + 97)) if (ord(x.lower()) - 97 - self.key) >= 0 else chr(((ord(x.lower()) - 97 - self.key) + 26) + 97) for x in re.sub(r'[\W0-9 ]', '', ciphertext.lower())])
+        return ''.join([chr(((ord(x.lower()) - 97 - self.rot_amount) + 97)) if (ord(x.lower()) - 97 - self.rot_amount) >= 0 else chr(((ord(x.lower()) - 97 - self.rot_amount) + 26) + 97) for x in re.sub(r'[\W0-9 ]', '', ciphertext.lower())])
     
 ################################################################################
 #
